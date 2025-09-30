@@ -1,0 +1,13 @@
+pose_encoder_kwargs:
+  downscale_factor: 8
+  channels: [320, 640, 1280, 1280]
+  nums_rb: 2
+  cin: 384
+  ksize: 1
+  sk: true
+  use_conv: false
+  compression_factor: 1
+  temporal_attention_nhead: 8
+  attention_block_types: ["Temporal_Self"]
+  temporal_position_encoding: true
+  temporal_position_encoding_max_len: 16

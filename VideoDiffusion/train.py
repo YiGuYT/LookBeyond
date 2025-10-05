@@ -18,7 +18,7 @@ import math
 from einops import rearrange
 import transformers
 from transformers import CLIPImageProcessor, CLIPVisionModelWithProjection
-from camctrl.pose_adaptor_V2 import CameraPoseEncoder
+from camctrl.pose_adaptor import CameraPoseEncoder
 from accelerate import Accelerator
 from accelerate.logging import get_logger
 from accelerate.utils import ProjectConfiguration, set_seed
@@ -39,14 +39,14 @@ from diffusers.pipelines.stable_video_diffusion.pipeline_stable_video_diffusion 
 from typing import Union, Tuple
 from dataclasses import dataclass
 
-from videogen.import FrameInterpolationWithNoiseInjectionPipeline
+from videogen import FrameInterpolationWithNoiseInjectionPipeline
 from diffusers.schedulers.scheduling_euler_discrete import EulerDiscreteScheduler
 from attn_ctrl.attention_control import (AttentionStore, 
                                          register_temporal_self_attention_control, 
                                          register_temporal_self_attention_flip_control,
 )
 from utils.parse_args import parse_args
-from svd_keyframe_interpolation.dataset.realestate10K import StableVideoDataset
+from dataset.realestate10K import StableVideoDataset
 os.environ['HF_HOME'] = 'cache'
 os.environ['HF_HUB_CACHE'] = 'hub'
 logger = get_logger(__name__, log_level="INFO")

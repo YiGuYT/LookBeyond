@@ -1,0 +1,40 @@
+accelerate==1.10.1
+brotlicffi @ file:///croot/brotlicffi_1736182461069/work
+certifi @ file:///croot/certifi_1754570635119/work/certifi
+cffi @ file:///croot/cffi_1736182485317/work
+charset-normalizer @ file:///croot/charset-normalizer_1721748349566/work
+diffusers==0.35.1
+filelock @ file:///croot/filelock_1744281381737/work
+fsspec==2025.9.0
+gmpy2 @ file:///croot/gmpy2_1738085463648/work
+hf-xet==1.1.10
+huggingface-hub==0.35.3
+idna @ file:///croot/idna_1714398848350/work
+importlib_metadata==8.7.0
+Jinja2 @ file:///croot/jinja2_1741710844255/work
+MarkupSafe @ file:///croot/markupsafe_1738584038848/work
+mkl-service==2.5.2
+mkl_fft @ file:///croot/mkl_fft_1751317925336/work
+mkl_random @ file:///croot/mkl_random_1751318527880/work
+mpmath @ file:///work/perseverance-python-buildout/croot/mpmath_1698864994882/work
+networkx @ file:///croot/networkx_1756709277056/work
+numpy @ file:///home/task_175766977308722/conda-bld/numpy_and_numpy_base_1757670241072/work/dist/numpy-2.3.3-cp312-cp312-linux_x86_64.whl#sha256=596a3c8431183d37c1e048e8eedca8531118ccd46a9e346906525f558e3932d5
+packaging==25.0
+pillow @ file:///croot/pillow_1752524526621/work
+psutil==7.1.0
+pycparser @ file:///home/task_175749564075091/conda-bld/pycparser_1757496039511/work
+PySocks @ file:///work/perseverance-python-buildout/croot/pysocks_1698845478203/work
+PyYAML @ file:///croot/pyyaml_1728657952215/work
+regex==2025.9.18
+requests @ file:///croot/requests_1756709366904/work
+safetensors==0.6.2
+setuptools==72.1.0
+sympy==1.13.1
+timm==1.0.20
+torch==2.5.1
+torchvision==0.20.1
+tqdm==4.67.1
+typing_extensions @ file:///croot/typing_extensions_1756280817316/work
+urllib3 @ file:///croot/urllib3_1750775463400/work
+wheel==0.45.1
+zipp==3.23.0

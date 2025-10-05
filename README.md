@@ -88,6 +88,50 @@ python train_video_lora.py \
 
 ---
 
+## Sampling / Inference
+
+### 1) Generate a Panorama
+```bash
+python sample_with_text.py \
+  --model DiT-XL/2 \
+  --image-path ./features/sample_000001.npy \
+  --text-path ./features/sample_000001_text.npy \
+  --ckpt ./checkpoints/pano.ckpt \
+  --vae ema \
+  --image-size 512 \
+  --num-sampling-steps 1000 \
+  --output-folder ./outputs/pano \
+  --device cuda:0
+```
+
+---
+
+### 2) Convert Panorama → Perspective Frames
+```bash
+python panorama2cube.py \
+  --input ../PanoDiT/outputs/pano/*.png \
+  --output ./outputs/perspective_frames \
+```
+
+---
+
+### 3) Generate Video from Perspective Frames
+```bash
+python videogen.py \
+  --pretrained_model_name_or_path stabilityai/stable-video-diffusion-img2vid-xt \
+  --checkpoint_dir ./runs/video_lora \
+  --frame1_path ../pano2perspect/outputs/perspective/sample_000001/000000.png \
+  --frame2_path ../pano2perspect/outputs/perspective/sample_000001/000011.png \
+  --pose_file ./metadata/pose.txt \
+  --out_path ./outputs/video/sample_000001.mp4 \
+  --num_frames 14 \
+  --num_inference_steps 50 \
+  --fps 24 \
+  --device cuda:0
+```
+
+---
+
 ## Acknowledgements
 
 - **PanoDiT** is adapted from [FastDiT](https://github.com/chuanyangjin/fast-DiT).  

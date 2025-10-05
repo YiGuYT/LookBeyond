@@ -7,11 +7,84 @@ Our method is organized into **three stages**, with corresponding reference impl
 1. **Panorama Generation** — [`PanoDiT/`](PanoDiT)  
    Generate panoramic views using a panoramic diffusion transformer.
 
-2. **Panorama → Perspective Conversion** — [`pano2perspect/`](pano2perspect)  
+2. **Panorama → Perspective Conversion** — [`Pano2Perspect/`](Pano2Perspect)  
    Convert equirectangular panoramas into perspective images for subsequent processing.
 
 3. **Video Generation from Perspective** — [`VideoDiffusion/`](VideoDiffusion)  
    Generate temporally consistent video sequences conditioned on the perspective images.
+
+---
+
+## Data Preparation
+
+The training process is divided into two stages based on dataset domains:
+
+- **Stage 1** is trained using the [Matterport3D](https://niessner.github.io/Matterport/) dataset.  
+- **Stage 2** is trained using the [RealEstate10K](https://google.github.io/realestate10k/) dataset.  
+
+---
+
+## Environment
+
+The corresponding environments are stored in the `requirements.txt` files located in the two repositories:
+
+- [`PanoDiT/requirements.txt`](PanoDiT/requirements.txt)  
+- [`VideoDiffusion/requirements.txt`](VideoDiffusion/requirements.txt)
+
+Please refer to each for detailed dependency setup.
+
+---
+
+## Training
+
+We follow a two-stage training pipeline aligned with the dataset domains:
+
+### Stage 1 — Panorama Generation (Matterport3D)
+
+Train the panoramic diffusion transformer using both **image features** and **text embeddings**.
+
+**Feature extraction**
+Use `extract_features.py` and `extract_text_features.py` beforehand to accelerate training.
+
+```bash
+python train_pano_with_text.py \
+  --feature-path /path/to/features \
+  --results-dir ./results_pano_text \
+  --model DiT-XL/2 \
+  --image-size 256 \
+  --global-batch-size 256 \
+  --num-workers 4 \
+  --log-every 100 \
+  --ckpt-every 50000
+```
+
+### Stage 2 — Video Generation (RealEstate10K)
+Train the video diffusion model on RealEstate10K, optionally conditioning on generated perspective frames produced from Stage 1 panoramas.
+
+```bash
+cd VideoDiffusion
+python train_video_lora.py \
+  --pretrained_model_name_or_path stabilityai/stable-video-diffusion-img2vid \
+  --variant fp16 \
+  --train-data-dir /path/to/RealEstate10K/frames \
+  --train-annotations-dir /path/to/RealEstate10K/annotations \
+  --output_dir ./runs/video_lora \
+  --num_train_epochs 10 \
+  --max_train_steps 200000 \
+  --train_batch_size 1 \
+  --gradient_accumulation_steps 8 \
+  --learning_rate 1e-4 \
+  --lr_scheduler cosine \
+  --lr_warmup_steps 1000 \
+  --mixed_precision fp16 \
+  --dataloader_num_workers 8 \
+  --num_frames 14 \
+  --checkpointing_steps 5000 \
+  --checkpoints_total_limit 5 \
+  --enable_xformers_memory_efficient_attention \
+  --allow_tf32 \
+  --seed 42
+```
 
 ---
 

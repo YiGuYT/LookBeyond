@@ -39,8 +39,8 @@ from diffusers.pipelines.stable_video_diffusion.pipeline_stable_video_diffusion 
 from typing import Union, Tuple
 from dataclasses import dataclass
 
-from custom_diffusers.pipelines.pipeline_stable_video_diffusion_with_ref_attnmap import StableVideoDiffusionWithRefAttnMapPipeline
-from custom_diffusers.schedulers.scheduling_euler_discrete import EulerDiscreteScheduler
+from videogen.import FrameInterpolationWithNoiseInjectionPipeline
+from diffusers.schedulers.scheduling_euler_discrete import EulerDiscreteScheduler
 from attn_ctrl.attention_control import (AttentionStore, 
                                          register_temporal_self_attention_control, 
                                          register_temporal_self_attention_flip_control,
@@ -528,7 +528,7 @@ def main():
         unet = unet.to(torch.float32)
 
         unwrapped_unet = unwrap_model(unet)
-        pipeline = StableVideoDiffusionWithRefAttnMapPipeline.from_pretrained(
+        pipeline = FrameInterpolationWithNoiseInjectionPipeline.from_pretrained(
                     args.pretrained_model_name_or_path,
                     scheduler=noise_scheduler,
                     unet=unwrapped_unet,

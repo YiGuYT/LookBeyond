@@ -1,5 +1,9 @@
 # Look Beyond: Two-Stage Scene View Generation via Panorama and Video Diffusion
 
+<p align="center">
+  <img src="assets/demo.gif" width="30%" style="margin: 0 1%;" />
+</p>
+
 ## Method Structure
 
 Our method is organized into **three stages**, with corresponding reference implementation in this repository:

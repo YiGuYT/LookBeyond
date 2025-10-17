@@ -1,5 +1,7 @@
 # Look Beyond: Two-Stage Scene View Generation via Panorama and Video Diffusion
 
+![Demo](acmmm_demo.gif)
+
 ## Method Structure
 
 Our method is organized into **three stages**, with corresponding reference implementation in this repository:

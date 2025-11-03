@@ -148,9 +148,11 @@ python videogen.py \
 If you find our work useful, please consider citing:
 
 ```bibtex
-@article{kang2025look,
-  title   = {Look Beyond: Two-Stage Scene View Generation via Panorama and Video Diffusion},
-  author  = {Kang, Xueyang and Xiang, Zhengkang and Zhang, Zezheng and Khoshelham, Kourosh},
-  journal = {arXiv preprint arXiv:2509.00843},
-  year    = {2025}
+@inproceedings{kang2025look,
+  title={Look Beyond: Two-Stage Scene View Generation via Panorama and Video Diffusion},
+  author={Kang, Xueyang and Xiang, Zhengkang and Zhang, Zezheng and Khoshelham, Kourosh},
+  booktitle={Proceedings of the 33rd ACM International Conference on Multimedia},
+  pages={9375--9384},
+  year={2025}
+}
 }

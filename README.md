@@ -155,4 +155,3 @@ If you find our work useful, please consider citing:
   pages={9375--9384},
   year={2025}
 }
-}
